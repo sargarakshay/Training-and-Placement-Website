@@ -1,0 +1,245 @@
+<?php
+	session_start();
+	include_once('dbconnect.php');
+	if($_SESSION['security'] != "aniwbfaybfylasflhnfbysgnrtbhyjehrheybrtjbdoah fclohfuh afu chr"){
+		header('Location:login.php?login=false');
+	}
+	$sql = "SELECT * FROM `student`";
+	$result = mysqli_query($con, $sql);
+	$totnum = mysqli_num_rows($result);
+	//echo "<br/><br/>Total studs: ".$totnum;
+	
+	$sql = "SELECT * FROM `student` WHERE `Company` LIKE ''";
+	$result = mysqli_query($con, $sql);
+	$totnumsel = mysqli_num_rows($result);
+	//echo "<br/>Total studs selected: ".($totnum-$totnumsel);
+	
+	$sql = "SELECT * FROM `student` WHERE `Field` LIKE 'Comp'";
+	$result = mysqli_query($con, $sql);
+	$compnum = mysqli_num_rows($result);
+	//echo "<br/><br/>Comp studs: ".$compnum;
+	
+	$sql = "SELECT * FROM `student` WHERE `Field` LIKE 'Comp' AND `Company` LIKE ''";
+	$result = mysqli_query($con, $sql);
+	$compnumsel = mysqli_num_rows($result);
+	//echo "<br/>Comp studs selected: ".($compnum-$compnumsel);
+	
+	$sql = "SELECT * FROM `student` WHERE `Field` LIKE 'Mech'";
+	$result = mysqli_query($con, $sql);
+	$mechnum = mysqli_num_rows($result);
+	//echo "<br/><br/>Mech studs: ".$mechnum;
+	
+	$sql = "SELECT * FROM `student` WHERE `Field` LIKE 'Mech' AND `Company` LIKE ''";
+	$result = mysqli_query($con, $sql);
+	$mechnumsel = mysqli_num_rows($result);
+	//echo "<br/>Mech studs selected: ".($mechnum-$mechnumsel);
+	
+	$sql = "SELECT * FROM `student` WHERE `Field` LIKE 'IT'";
+	$result = mysqli_query($con, $sql);
+	$itnum = mysqli_num_rows($result);
+	//echo "<br/><br/>IT studs: ".$itnum;
+	
+	$sql = "SELECT * FROM `student` WHERE `Field` LIKE 'IT' AND `Company` LIKE ''";
+	$result = mysqli_query($con, $sql);
+	$itnumsel = mysqli_num_rows($result);
+	//echo "<br/>IT studs selected: ".($itnum-$itnumsel);
+	
+	$sql = "SELECT * FROM `student` WHERE `Field` LIKE 'Elex'";
+	$result = mysqli_query($con, $sql);
+	$elexnum = mysqli_num_rows($result);
+	//echo "<br/><br/>Elex studs: ".$elexnum;
+	
+	$sql = "SELECT * FROM `student` WHERE `Field` LIKE 'Elex' AND `Company` LIKE ''";
+	$result = mysqli_query($con, $sql);
+	$elexnumsel = mysqli_num_rows($result);
+	//echo "<br/>Elex studs selected: ".($elexnum-$elexnumsel);
+	
+	$sql = "SELECT * FROM `student` WHERE `Field` LIKE 'Indus'";
+	$result = mysqli_query($con, $sql);
+	$indusnum = mysqli_num_rows($result);
+	//echo "<br/><br/>Indus studs: ".$indusnum;
+	
+	$sql = "SELECT * FROM `student` WHERE `Field` LIKE 'Indus' AND `Company` LIKE ''";
+	$result = mysqli_query($con, $sql);
+	$indusnumsel = mysqli_num_rows($result);
+	//echo "<br/>indus studs selected: ".($indusnum-$indusnumsel);
+	
+	$sql = "SELECT * FROM `student` WHERE `Field` LIKE 'prod'";
+	$result = mysqli_query($con, $sql);
+	$prodnum = mysqli_num_rows($result);
+	//echo "<br/><br/>Prod studs: ".$prodnum;
+	
+	$sql = "SELECT * FROM `student` WHERE `Field` LIKE 'Prod' AND `Company` LIKE ''";
+	$result = mysqli_query($con, $sql);
+	$prodnumsel = mysqli_num_rows($result);
+	//echo "<br/>Prod studs selected: ".($prodnum-$prodnumsel);
+	
+	$totnumsel = $totnum-$totnumsel;
+	$prodnumsel = $prodnum-$prodnumsel;
+	$indusnumsel = $indusnum-$indusnumsel;
+	$itnumsel = $itnum-$itnumsel;
+	$mechnumsel = $mechnum-$mechnumsel;
+	$compnumsel = $compnum-$compnumsel;
+	$elexnumsel = $elexnum-$elexnumsel;
+	error_reporting(0);
+	if($_GET['up'] === 'true'){
+		echo '<script>alert("File uploaded successfully");</script>';
+	}
+	if($_GET['File'] === 'NoExist'){
+		echo '<script>alert("File Does not Exist");</script>';
+	}
+	if($_GET['nofile'] === 'true'){
+		echo '<script>alert("invalid File type");</script>';
+	}
+
+	if($_GET['yesfile'] === 'true'){
+		echo '<script>alert("File already exist");</script>';
+	}
+	if($_GET['filesize'] === 'true'){
+		echo '<script>alert("Check File size");</script>';
+	}
+?>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="">
+	
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/landing-page.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+	
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+	<title>Tpo</title>
+	
+	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<style>
+		
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand topnav" href="tpohomepage.php">TPO homepage</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+						<a href = "tresult.php">Results</a>			
+                    </li>
+                    <li>
+						<a href = "logout.php">Logout</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+	
+	<div class="intro-header">
+       <div class="container">
+		<header style = "float : left"><img src = "images/vit-logo.png"/></header>	
+		<text style = "align : centre">Bansilal Ramnath Agarwal Charitable Trust's<br/>
+		<h3>Vishwakarma Institute of Technology</h3><br/>
+		(An Autonomous Institute affiliated to Savitribai Phule Pune University)</text>
+		<br/>
+			<a href = "addc.php"><button type="button" class="btn">Add Company</button></a>
+			<a href = "adds.php"><button type="button" class="btn btn-info">Add Student</button></a>
+			<a href = "editr.php"><button type="button" class="btn btn-info">Edit rules</button></a>
+			<a href = "showallcomp.php"><button type="button" class="btn btn-danger">Show all companies</button></a>
+			<a href = "showallstud.php"><button type="button" class="btn btn-warning">Show all students</button></a>
+			<br/><br/>
+			<div class="row">
+			<div class="col-xs-6 col-md-4"></div>
+			<div class="col-xs-6 col-md-4">
+			<form class="form-group" action="upload.php?who=tpo" method ="post" enctype='multipart/form-data'>
+				<span input type="submit" class="button_ask">Upload Document(20KB-5MB)</span>
+				<input class="form-control" type='file' name='file'>
+				<button class="btn btn-lg btn-primary type="submit">Upload</button>
+			</form>
+			
+			<br/><br/>
+			<?php
+				echo "<h3>All Files</h3>";
+				$sql = "SELECT * FROM `docs`";
+				$result = mysqli_query($con, $sql);
+				$num_rows = mysqli_num_rows($result);
+				if($num_rows != 0){
+					echo '<table class="table">';
+					echo '<tr><td>File Name</td><td>Remove File</td></tr>';
+				}
+				while($row = mysqli_fetch_array($result)){
+					$File = $row['File'];
+					$Id = $row['id'];
+					echo "<tr><td><a href=".$File."><span style='color:#42f495'>".$File."</span></a></td><td><a href='remove.php?id=".$Id."&&File=".$File."'><span style='color:#42f495'>Remove File</span></a></td></tr><br/>";
+				}
+				if($num_rows == 0)
+					echo "No Files uploaded";
+				else 
+					echo '</table>';
+				mysqli_close($con);
+				?>
+			<br/><br/>
+			</div>
+			<div class="col-xs-6 col-md-4"></div>
+			</div>
+					<h2>Statistics of students</h2>
+					<table class="table">
+						<?php
+						echo '<tr><td><h4>Branch name</h4></td><td><h4>Total students</h4></td><td><h4>Selected students</h4></td></tr>';
+						
+							echo '<tr><td>All branches</td><td>'.$totnum.'</td><td>'.$totnumsel.'</td></tr>';
+							echo '<tr><td>Comp</td><td>'.$compnum.'</td><td>'.$compnumsel.'</td></tr>';
+							echo '<tr><td>IT</td><td>'.$itnum.'</td><td>'.$itnumsel.'</td></tr>';
+							echo '<tr><td>Indus</td><td>'.$indusnum.'</td><td>'.$indusnumsel.'</td></tr>';
+							echo '<tr><td>Prod</td><td>'.$prodnum.'</td><td>'.$prodnumsel.'</td></tr>';
+							echo '<tr><td>Mech</td><td>'.$mechnum.'</td><td>'.$mechnumsel.'</td></tr>';
+							echo '<tr><td>Elex</td><td>'.$elexnum.'</td><td>'.$elexnumsel.'</td></tr>';
+						?>
+					
+					</table>						
+    </div>
+    
+	<footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="list-inline">
+                        <li>
+                            <a href="#about">About us</a>
+                        </li>
+                        <li>
+                            <a href="#contact">Contact us</a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted small">Copyright &copy; VIT 2016. All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
